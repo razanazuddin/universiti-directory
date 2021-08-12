@@ -51,9 +51,10 @@ const UniversitiesList: React.FC = () => {
             type="text"
             className="form-control"
             placeholder="Search by name or country"
+            aria-label="search-input"
             value={searchQuery}
             onChange={onChangeSearchQuery}
-            onKeyPress={search}
+            onKeyDown={search}
           />
         </div>
       </div>

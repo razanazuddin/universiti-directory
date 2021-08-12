@@ -41,13 +41,18 @@ const Subscription: React.FC = () => {
             type="email"
             className={`form-control ${validationClass}`}
             placeholder="Your email address"
+            aria-label="email-input"
             value={emailInput}
             onChange={onChangeEmailInput}
             required
           />
-          <div className="valid-feedback">Thank you for your interest!</div>
-          <div className="invalid-feedback">That email is not valid.</div>
-          <button className="btn btn-primary mt-3" type="submit">
+          <div className="valid-feedback" aria-label="success-message">Thank you for your interest!</div>
+          <div className="invalid-feedback" aria-label="error-message">That email is not valid.</div>
+          <button
+            className="btn btn-primary mt-3"
+            type="submit"
+            aria-label="submit-button"
+          >
             Submit
           </button>
         </form>

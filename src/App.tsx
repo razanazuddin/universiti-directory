@@ -1,27 +1,32 @@
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link, BrowserRouter, Router } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { createBrowserHistory } from 'history';
 
 import UniversitiesList from './components/UniversitiesList';
 import Subscription from './components/Subscription';
 import NotFound from './components/NotFound';
 
 const App = () => {
+  const customHistory = createBrowserHistory();
+
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="navbar-brand"></div>
         <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={'/universities'} className="nav-link">
-              Universities
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to={'/institutions'} className="nav-link">
-              Institutions
-            </Link>
-          </li>
+          <BrowserRouter>
+            <li className="nav-item">
+              <Link to={'/universities'} className="nav-link">
+                Universities
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={'/institutions'} className="nav-link">
+                Institutions
+              </Link>
+            </li>
+          </BrowserRouter>
         </div>
       </nav>
 
@@ -34,14 +39,16 @@ const App = () => {
       </div>
 
       <div className="container mt-3">
-        <Switch>
-          <Route
-            exact
-            path={['/', '/universities']}
-            component={UniversitiesList}
-          />
-          <Route component={NotFound} />
-        </Switch>
+        <Router history={customHistory}>
+          <Switch>
+            <Route
+              exact
+              path={['/', '/universities']}
+              component={UniversitiesList}
+            />
+            <Route component={NotFound} />
+          </Switch>
+        </Router>
       </div>
     </div>
   );
